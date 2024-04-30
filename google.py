@@ -10,7 +10,7 @@ else:
 	with open('prompt.txt') as f:
 		prompt = f.read().splitlines()
 
-genai.configure(api_key='AIzaSyBet9G8MBIGsNKzVDeJCqg96ZuKKj-lsCY')
+genai.configure(api_key='key')
 model = genai.GenerativeModel('gemini-1.0-pro-latest')
 response = model.generate_content(prompt)
 print(response.text)
