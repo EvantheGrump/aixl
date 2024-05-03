@@ -6,7 +6,7 @@ import http.server
 import socketserver
 import google.generativeai as genai
 
-genai.configure(api_key='AIzaSyBet9G8MBIGsNKzVDeJCqg96ZuKKj-lsCY')
+genai.configure(api_key='key')
 model = genai.GenerativeModel('gemini-1.0-pro-latest')
 PORT = 8000
 handler = http.server.SimpleHTTPRequestHandler
