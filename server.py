@@ -6,10 +6,8 @@ import http.server
 import socketserver
 import google.generativeai as genai
 
-genai.configure(api_key='key')
+genai.configure(api_key='AIzaSyBet9G8MBIGsNKzVDeJCqg96ZuKKj-lsCY')
 model = genai.GenerativeModel('gemini-1.0-pro-latest')
-PORT = 8000
-handler = http.server.SimpleHTTPRequestHandler
 global num
 
 async def handle_connection(websocket, path):
@@ -26,11 +24,12 @@ async def handle_connection(websocket, path):
                 prompt = f.read().splitlines()
             os.chmod(f"prompt{num}.txt", 777)
             response = model.generate_content(prompt)
-            print(response.text)
-            # os.remove(f"prompt{num}.txt")
+            # print(response.text)
+            os.remove(f"prompt{num}.txt")
             num = 0
+            await websocket.send(response.text)
         else:
-            print(f"New num: {data}")
+            # print(f"New num: {data}")
             num = data
 
 start_server = websockets.serve(handle_connection, "localhost", 8765)
